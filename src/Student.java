@@ -6,7 +6,7 @@ public class Student {
     private String lastName;
     private int gradeYear;
     private String studentID;
-    private String courses = null;
+    private String courses = "";
     private int tuitionBalance = 0;
     private static int coustOfCourse = 600;
     private static int id = 1000;
@@ -14,7 +14,7 @@ public class Student {
     // constructor: prompt student's name and year
     public Student(){
         Scanner in = new Scanner(System.in);
-        System.out.print("Enter your first name: ");
+        System.out.print("\nEnter your first name: ");
         this.firstName = in.nextLine();
 
         System.out.print("Enter your last name: ");
@@ -25,10 +25,6 @@ public class Student {
 
         //call method to set studentID
         setStudentID();
-
-        System.out.println("ID: "+ this.studentID + " " + this.firstName + " " + this.lastName + ": " + this.gradeYear);
-
-
     }
 
     // set Student ID
@@ -40,20 +36,17 @@ public class Student {
     // set Enroll courses method
     public void enroll(){
         // break loop when user heats Q
-        do{
-            System.out.print("Choose a course to enroll: ");
+        do {
+            System.out.print("Choose a course to enroll (Press Q to quit): ");
             Scanner in = new Scanner(System.in);
             String course = in.nextLine();
-            if(!course.equals("Q")){
-            courses = courses + "\n" + course;
-            tuitionBalance = tuitionBalance + coustOfCourse;
-            } else { break; };
-        } while(1 != 0);
-
-        System.out.println("ENROLLED IN: "+ courses);
-        //System.out.println("TUITION BALANCE: " + tuitionBalance);
+            if (!course.equals("Q")) {
+                courses = courses + "\n     " + course;
+                tuitionBalance = tuitionBalance + coustOfCourse;
+            } 
+            else { break; }} while(1 != 0);
     }
-
+         
     // view Balance
     public void viewBalance(){
         System.out.println("Your balance is: $" + tuitionBalance);
@@ -71,5 +64,12 @@ public class Student {
         viewBalance();
     }
 
-
+    // Show Status
+    public String toString(){
+        return "\nName: " + firstName + " " + lastName +
+                "\nGrade Level: " + gradeYear +
+                "\nStudent ID: " + studentID +
+                "\nCourses Enrolled: " + courses +
+                "\nBalance: $" + tuitionBalance;
+    }
 }
